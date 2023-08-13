@@ -1,0 +1,35 @@
+[project]
+name = "keplerian-toolkit"
+version = "0.1.0"
+description = "Keplerian Toolkit (ktk) is an astrodynamics library with algorithms to convert between different osculating and mean orbital elements"
+authors = [
+    {name = "Pol Mesalles"},
+]
+readme = "README.md"
+license = {text = "MIT"}
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+[build-system]
+requires = [
+    "scikit-build-core",
+    "pybind11-stubgen",
+]
+build-backend = "scikit_build_core.build"
+
+[tool.scikit-build]
+wheel.packages = [
+    "python/ktk",
+]
+cmake.args = [
+    "-DBUILD_BINDINGS=ON",
+    "-DBUILD_STUBS=ON",
+]
+
+[tool.pytest.ini_options]
+addopts = [
+    "tests", # only run our tests
+]
