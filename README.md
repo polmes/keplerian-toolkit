@@ -27,7 +27,7 @@ ctest .
 
 ```
 python -m venv .venv && source .venv/bin/activate
-pip install . # or .[dev] for testing dependencies
+pip install -v . # or .[dev] for testing dependencies
 ```
 
 ### Using the Python Module
