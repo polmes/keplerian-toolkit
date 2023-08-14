@@ -1,7 +1,12 @@
+# Collect the corresponding sources
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS ${BINDING_DIR}/*.cpp)
+target_include_directories(${LIBRARY_NAME} PRIVATE ${SOURCES_DIR})
+
 # Build the internal Python module, named _ktk
 set(EXTERNAL_MODULE_NAME ktk)
 set(INTERNAL_MODULE_NAME _${EXTERNAL_MODULE_NAME})
-pybind11_add_module(${INTERNAL_MODULE_NAME} ktk.cpp)
+pybind11_add_module(${INTERNAL_MODULE_NAME} ${SOURCES})
+target_include_directories(${LIBRARY_NAME} PRIVATE ${BINDING_DIR})
 target_compile_definitions(${INTERNAL_MODULE_NAME} PRIVATE "MODULE_NAME=${INTERNAL_MODULE_NAME}")
 target_link_libraries(${INTERNAL_MODULE_NAME} PRIVATE ${LIBRARY_NAME})
 set_target_properties(${INTERNAL_MODULE_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
